@@ -9,8 +9,8 @@
  * You should have received a copy of the CC0 Public Domain Dedication along with
  * this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
-#include "midge.h"
-#include "midge-main.h"
+#include <midge/midge.h>
+#include <midge/midge-main.h>
 #include <GL/gl.h>
 
 static void my_paint(struct midge_event *event_data, struct midge_notifier_watcher *notify);

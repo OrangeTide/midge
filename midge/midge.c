@@ -1,3 +1,4 @@
+/* midge.c - the Midge framework: a small portable graphics library */
 /*-
  * Copyright (c) 2019 Jon Mayo
  *

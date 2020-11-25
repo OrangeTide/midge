@@ -1,3 +1,4 @@
+/* midge-drv.h - platform driver interface for midge */
 /* no copyright on interfaces or header files */
 #ifndef MIDGE_DRV_H_
 #define MIDGE_DRV_H_

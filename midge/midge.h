@@ -1,3 +1,4 @@
+/* midge-drv.h - application interface for midge */
 /* no copyright on interfaces or header files */
 #ifndef MIDGE_H_
 #define MIDGE_H_

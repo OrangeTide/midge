@@ -1,6 +1,10 @@
 # Midge: a C framework for writing OpenGL applications
 
-This library creates a GL context and manages a platform specific window for your application. It provides functionality similar to [freeGLUT](http://freeglut.sourceforge.net/), [GLFW](http://www.glfw.org/), [SDL](https://www.libsdl.org/), and [raylib](http://www.raylib.com/). And is inferior to those libraries in nearly every way.
+This library creates a GL context and manages a platform specific window for
+your application. It provides functionality similar to
+[freeGLUT](http://freeglut.sourceforge.net/), [GLFW](http://www.glfw.org/),
+[SDL](https://www.libsdl.org/), and [raylib](http://www.raylib.com/). And is
+inferior to those libraries in nearly every way.
 
 ## Table of Contents
 
@@ -29,11 +33,18 @@ Output is a static library (`libmidge.a`) and some demos.
 
 Link your own project to `libmidge.a`, using the demos as a reference.
 
-Entry point into your application is `midge_app_start()`. From register handlers for each event type you intend to support. This start handler is called after a default window and context is created.
+Entry point into your application is `midge_app_start()`. From register
+handlers for each event type you intend to support. This start handler is
+called after a default window and context is created.
 
-Optionally your application may define the entry point `midge_app_configure()`. This configure handler is called instead of creating a default window and context. It is necessary to call `midge_window_new()` one or more times before leaving this function.
+Optionally your application may define the entry point `midge_app_configure()`.
+This configure handler is called instead of creating a default window and
+context. It is necessary to call `midge_window_new()` one or more times before
+leaving this function.
 
-It is recommend that your application includes `midge-main.h` rather than defining its own `main()` entry point. Additional information on writing your own `main()` is documented in `midge.h` and `midge-main.h`.
+It is recommend that your application includes `midge-main.h` rather than
+defining its own `main()` entry point. Additional information on writing your
+own `main()` is documented in `midge.h` and `midge-main.h`.
 
 ```c
 /* yourapp.c
@@ -57,7 +68,7 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 ## License
 
 ```
-Copyright (c) 2019, Jon Mayo
+Copyright (c) 2019-2020, Jon Mayo
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

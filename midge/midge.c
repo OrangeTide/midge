@@ -26,6 +26,7 @@
  */
 #include "midge.h"
 #include "midge-drv.h"
+#include "glad.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -38,6 +39,9 @@ midge_init(void)
 		return -1;
 
 	midge_app_configure();
+
+	gladLoadGL();
+
 	midge_app_start();
 
 	return 0;

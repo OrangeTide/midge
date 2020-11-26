@@ -11,20 +11,13 @@
  */
 #include <midge/midge.h>
 #include <midge/midge-main.h>
+#include <sprite/sprite.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifdef OPENGL_HEADER
-#  include OPENGL_HEADER
-#else
-#  include <GL/gl.h>
-#  include <GL/glu.h>
-#  include <GL/glaux.h>
-#endif
+#include <GL/gl.h>
 
 static struct midge_notifier_watcher *paint_notifier, *keyinput_notifier;
-static GLuint fontsheet = 0;
 
 void app_paint(struct midge_event *event_data, struct midge_notifier_watcher *notify);
 void app_keyinput(struct midge_event *event_data, struct midge_notifier_watcher *notify);
@@ -47,19 +40,9 @@ midge_app_start(void)
 		exit(1);
 	}
 
+	sprite_init();
+
 	glClearColor(0.8, 0.2, 0.8, 1.0);
-
-	glGenTextures(1, &fontsheet);
-	glBindTexture(GL_TEXTURE_2D, fontsheet);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	/* load a 2x2 pixel texture */
-	unsigned char data[] = {
-		255, 0, 0, 255, 0, 255, 0, 255,
-		0, 0, 255, 255, 255, 255, 255, 255,
-	};
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 2, 2, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 }
 
 void
@@ -71,24 +54,10 @@ app_stop(void)
 void
 app_paint(struct midge_event *event_data, struct midge_notifier_watcher *notify)
 {
-	double x = 0.0, y = 0.0, w = 0.5, h = 0.5;
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-#if 0 // TODO: replace with modern GL code
 	glLoadIdentity();
 
-	glEnable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-	glBindTexture(GL_TEXTURE_2D, fontsheet);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0, 0.0); glVertex3f(x, y, 0.0f);
-	glTexCoord2f(0.0, 1.0); glVertex3f(x, y + h, 0.0f);
-	glTexCoord2f(1.0, 1.0); glVertex3f(x + w, y + h, 0.0f);
-	glTexCoord2f(1.0, 0.0); glVertex3f(x + w, y, 0.0f);
-	glEnd();
-	glDisable(GL_TEXTURE_2D);
-#endif
+	sprite_draw();
 
 #if 0
 	GLenum err = glGetError();
@@ -96,7 +65,6 @@ app_paint(struct midge_event *event_data, struct midge_notifier_watcher *notify)
 		fprintf(stderr, "err=%d\n", err);
 	}
 #endif
-
 }
 
 static void

@@ -39,7 +39,10 @@ help :
 	$(call echo_config_choices,$(CONFIG_CHOICES))
 
 ################################################################################
-include settings.mk
+-include settings.mk
+ifneq ($(lastword $(MAKEFILE_LIST)),settings.mk)
+.DEFAULT_GOAL := configure
+endif
 ################################################################################
 HOSTCC ?= $(CC)
 HOSTLD ?= $(LD)
